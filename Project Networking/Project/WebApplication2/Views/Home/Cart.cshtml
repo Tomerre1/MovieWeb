@@ -1,0 +1,96 @@
+﻿@model WebApplication2.ViewModel.cartViewModel
+@using WebApplication2.Models
+@using WebApplication2.Controllers
+@{ 
+    int sum = 0;
+    
+}
+
+<!--
+  Inspired by Vladyslav Tyzun / Awesomed
+  https://dribbble.com/shots/2738907-PayPal-Email-Receipt
+-->
+<!DOCTYPE html>
+<html>
+<head>
+
+
+    <meta charset="utf-8">
+    <title>UI 1</title>
+    <link rel="shortcut icon" href="paypal.png">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/cart.css" charset="utf-8">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <form>
+
+
+        <div class="paypal">
+
+            <div class="paypal__header">
+                <div class="paypal__logo-wrapper">
+                    <img src="~/Content/css/images/creditcard.png" alt="Paypal" class="paypal__logo">
+                </div>
+
+                <div class="paypal__header-info">
+                    <span class="paypal__date">@DateTime.Now</span>
+                </div>
+            </div>
+
+            <div class="paypal__subheader-wrapper">
+                <div class="paypal__subheader">
+                    <h1 class="paypal__username">Hello,@HomeController.user.UserName</h1>
+                    <span class="paypal__help-text">you've purchased this items in our store:</span>
+                </div>
+            </div>
+
+            <div class="paypal__cart">
+                <h2 class="paypal__cart-title">Cart:</h2>
+
+                <ul class="paypal__cart-list">
+                    @foreach (Cart x in Model.user_carts)
+                    {
+                        <li class="paypal__cart-item">
+                            <span class="paypal__item-name" style="display:inline">Name:@x.movieName Date:@x.movie_date Time:@x.movie_time Hall:@x.hall Seats:@x.Seats   </span>
+                            <div class="paypal__item-price">
+                                ₪@x.subTotal &nbsp; <a class="btn" style="font-size:1.4rem"
+                                                       href="@Url.Action("ChangeYourSeats","Home",new {myMovie = x.movieName , userName=x.userName, date=x.movie_date,time=x.movie_time,hall=x.hall,price=x.price,seats=x.Seats})">Change</a>  <a class="btn" style="font-size:1.4rem" href="@Url.Action("RemoveItem","Home",new {MyMovie = x.movieName , date=x.movie_date,time=x.movie_time,oldSeats=x.Seats})">Remove</a>
+                            </div>
+                        </li>
+                    }
+
+                    <li class="paypal__cart-item">
+                        <span class="paypal__cart-total">Total</span>
+                        @foreach (Cart x in Model.user_carts)
+                        {
+                            sum += int.Parse(x.subTotal);
+                            HomeController.paypalPrice += int.Parse(x.subTotal);
+                        }
+                        <span class="paypal__item-price" >₪@sum</span>
+                    </li>
+                </ul>
+            </div>
+           
+            <div class="paypal__footer">
+                @if (Model.user_carts.Count > 0)
+                {
+                    <a href="@Url.Action("PayAllCart","Home")" class="btn" value="Pay Now" style="margin-left: 1212px;display:inline">Pay Now </a><br /><br />
+                }
+                    <a href="@Url.Action("Index","Home")" class="btn" value="Pay Now" style="margin-left: 1212px">Back</a>
+                </div>
+            
+         
+              
+            
+
+            
+        </div>
+
+
+    </form>
+    <script>
+        
+    </script>
+</body>
+</html>

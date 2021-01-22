@@ -1,0 +1,84 @@
+﻿@model WebApplication2.ViewModel.datesViewModel
+@using WebApplication2.Models
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link href="~/Content/css/RemoveMovie.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Halls Management:</h2>
+
+
+        <div id="new-movie-form">
+            <div id="status" class="error"> </div>
+
+            <form name="movieform" class="movie-form">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title">
+                </div>
+                <div class="form-group">
+                    <label for="img">Image:</label>
+                    <input type="text" class="form-control" id="img">
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input type="number" class="form-control" id="rating">
+                </div>
+
+                <input class="btn btn-sm btn-primary" type="submit" value="Save" id="save-new-movie" onClick=addMovie(movieform)>
+            </form>
+        </div>
+
+
+
+        <div id="table">
+
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Hall</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (dates m in Model.movies_dates)
+                    {
+                    <tr>
+                        <td class="align-middle">@m.movieName</td>
+                        <td class="align-middle">@m.movie_date</td>
+                        <td class="align-middle">@m.movie_time</td>
+                        <td class="align-middle">@m.hall</td>
+
+                        <td class="align-middle">
+                            <form id="myForm" method="post" action="@Url.Action("changeHallFunc","Home",new { myMovie=m.movieName,selectedHall=m.hall,movie_date=m.movie_date,movie_time=m.movie_time})">
+                                <input name="@m.movieName" id="@m.movieName" type="number" style="width:10%;" min="1" max="8">
+                                <input type="submit" style="background-color: #4CAF50; border:none;" class="btn btn-sm btn-danger" value="Change Hall">
+                            </form>
+                        </td>
+                    </tr>
+                     } 
+                </tbody>
+            </table>
+            <form id="myForm" method="post" action="@Url.Action("AdminDashboard","Home")">
+                <input type="submit" style="background-color: #4CAF50; border:none;" class="btn btn-sm btn-danger" value="Back Admin Dashboard">
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>
+

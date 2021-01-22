@@ -1,0 +1,179 @@
+﻿@model WebApplication2.ViewModel.changeSeatsViewModel
+@using WebApplication2.Models
+@{
+    List<Order>
+           ords = new List<Order>();
+    ords = Model.orders;
+    Order myord = new Order();
+    int k = 1;
+    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Seat Booking</title>
+
+    <link href="~/Content/css/styleMovieHall.css" rel="stylesheet" />
+</head>
+
+<body>
+    
+    <div>
+        <br /><br /><br /><br /><br /><br />
+    </div>
+    <br />
+    <input type="number" class="select-box" id="Numseats" value="1" style="visibility:hidden" required>
+    <ul class="showcase">
+        <li>
+            <div class="seat"></div>
+            <small>N/A</small>
+        </li>
+        <li>
+            <div class="seat selected"></div>
+            <small>Selected</small>
+        </li>
+        <li>
+            <div class="seat occupied"></div>
+            <small>Occupied</small>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="movie-screen">
+            <h3> Screen </h3>
+        </div>
+
+        <div class="row-container">
+            @for (int i = 1; i <= int.Parse(Model.hall.numRows); i++)
+            {
+                <div class="row">
+
+                    @for (; @k <= i * 8; @k++)
+                    {
+                        <div class="seat">@k</div>
+
+                    }
+                </div>
+            }
+
+        </div>
+
+        <div class="text-wrapper">
+            <p class="text">Selected Seats <span id='count'></span>
+            <p class="text">Total Price <span id="total"></span></p>
+        </div>
+
+
+        <form method="post" action="@Url.Action("addSeatChanges", "Home",new {myMovie = Model.movieName , userName=Model.userName, date=Model.date,time=Model.time,hall=Model.hall.HallId,price=Model.price,oldSeats=Model.newSeats})" style="display:inline">
+
+            <input id="confrimbuy" name="confrimbuy" class="confrim" style="background: #4A90E2; border-color: #3672B6; color: #fff;" value="Change Seats" onclick="cartInformation()" type="submit" />
+            <input name="seatsForCart" id="seatsForCart" style="visibility:hidden;" />
+            <input name="subtotal" id="subtotal" style="visibility:hidden;" />
+
+        </form>
+
+
+
+    </div>
+
+    
+    <script>
+        let data1 = [];
+        let data = new Array();
+        @foreach (Order myOrd in Model.orders)
+        {
+         @:data1.push([@myOrd.chairID]);
+        }
+
+        for (let i = 0; i < data1.length; i++) {
+            data[i] = data1[i].toString();
+        }
+
+        const seats = document.querySelectorAll(".row .seat:not(.occupied)");
+        const seatContainer = document.querySelector(".row-container");
+        const count = document.getElementById("count");
+        const total = document.getElementById("total");
+        const movieSelect = document.getElementById("movie");
+        const seatsSelect = document.getElementById("Numseats");
+
+        var seatsIndex = new Array();
+        let stringData = "@Model.newSeats".split(',');
+
+        stringData.forEach(function (el) {
+            seatsIndex.push(el);
+        })
+
+
+        const selectedSeats = document.querySelectorAll(".container .selected").length-1;
+
+        count.textContent = seatsIndex.length;
+        total.textContent = seatsIndex.length * @Model.price;
+
+        function Init() {
+            seats.forEach(function (el, index) {
+                if (data.indexOf(el.textContent) > -1) {
+                    el.classList.add("occupied");
+                }
+            })
+        }
+
+        function Init2() {
+            seats.forEach(function (el, index) {
+                if (seatsIndex.indexOf(el.textContent) > -1) {
+                    el.classList.add("selected");
+                }
+            })
+        }
+
+
+        Init();
+        Init2();
+
+
+        seatContainer.addEventListener("click", function (e) {
+
+            const maxSeatsSelected = parseInt(document.getElementById("Numseats").value);
+            if (maxSeatsSelected < 1) {
+
+            }
+            else if (
+                e.target.classList.contains("selected") ||
+                e.target.classList.contains("seat") &&
+                !e.target.classList.contains("occupied")
+            ) {
+                e.target.classList.toggle("selected");
+
+                if (seatsIndex.indexOf(e.target.textContent.toString()) == -1) {
+                    seatsIndex.push(e.target.textContent.toString());
+                }
+                else {
+                    seatsIndex = seatsIndex.filter(item => item !== (e.target.textContent.toString()))
+                }
+
+                count.textContent = seatsIndex.length;
+                
+                    total.textContent = seatsIndex.length * @Model.price;
+               
+            }
+        });
+
+        function getSeatsIndex() {
+            alert("You Will Transfer To Payment of " + seatsIndex.length + " seats " + "\nPayment of: " + total.textContent);
+            const  x = document.getElementById("seats");
+            x.value = seatsIndex.toString();
+
+        }
+        function cartInformation() {
+            const subtotal = document.getElementById("subtotal");
+            subtotal.value = total.textContent ;
+            const seats = document.getElementById("seatsForCart");
+            seats.value = seatsIndex.toString();
+        }
+    </script>
+</body>
+
+</html>

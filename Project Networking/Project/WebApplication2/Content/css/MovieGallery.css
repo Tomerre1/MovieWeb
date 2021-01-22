@@ -1,0 +1,195 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    
+    background: url('images/1597786.jpg') fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Roboto';
+} 
+
+body,
+h1 {
+    margin: 0;
+}
+
+header > h1 {
+    text-align: center;
+    margin: 10px 0;
+    color: #18FF92;
+}
+.btn {
+    background: #4d819f;
+    background-color:cadetblue
+    text-align: center;
+    -webkit-appearance: none;
+    border: 1px solid #ccc;
+    border-radius: 125px;
+    box-shadow: inset 0 13px 25px rgba(255,255,255,0.5), 0 3px 5px rgba(0,0,0,0.2), 0 10px 13px rgba(0,0,0,0.1);
+    cursor: pointer;
+    font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+    
+    position: relative;
+    transition: all ease .3s;
+    display: inline;
+    
+}
+.hour {
+    width: 10%; 
+}
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Concert+One);
+@import url(https://fonts.googleapis.com/css?family=Advent+Pro:300);
+
+html, body {
+    height: 100%;
+}
+
+/* Reset Select */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #2c3e50;
+    background-image: none;
+    margin-left: 0px;
+}
+    /* Remove IE arrow */
+    select::-ms-expand {
+        display: none;
+    }
+/* Custom Select */
+.select {
+    position: relative;
+    width: 20em;
+    height: 3em;
+    line-height: 1.5em;
+    background: #2c3e50;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+}
+/* Arrow */
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #34495e;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+}
+
+/* Transition */
+.select:hover::after {
+    color: #f39c12;
+}
+
+
+.output {
+    width: 100%;
+    font-size: 2em;
+    font-family: 'Roboto', sans-serif;
+    color: #4d819f;
+}
+
+
+.buttons {
+    margin-bottom: 2em;
+}
+
+.buttons ul li {
+        display: inline;
+        margin-right: 1em;
+}
+    .buttons a {
+        background: #4d819f;
+        padding: 0.5em 1em;
+        color: #eee;
+        text-decoration: none;
+        border-radius: 0.2em;
+    }
+
+.buttons a:hover {
+            background: #5e9abd;
+}
+
+input[type="range"] {
+    width: auto;
+    
+    display: inline;
+}
+
+
+
+.container {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between */
+    overflow: hidden;
+}
+
+.movie-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid #18FF92; */
+    margin: 20px;
+    padding-top: 10px;
+    /* flex: 0 0 calc(25% - 40px); */
+    flex: 0 0 calc(25% - 40px);
+    /* flex: 0 0 25%; */
+    /* margin-right:auto;
+    margin-right:left; */
+    /*     overflow:hidden; */
+}
+
+.movie-item img {
+        width: 100%;
+        transition: transform .5s
+    }
+
+img:hover {
+    transform: scale(1.2);
+    /* z-index:9999; */
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+
+
+@media (max-width:1125px) {
+    .movie-item {
+        flex: 0 0 calc(33.33333% - 40px);
+    }
+}
+
+@media (max-width:856px) {
+    .container {
+        justify-content: center;
+    }
+
+    .movie-item {
+        /* margin-left:auto; */
+        /* margin-right:auto; */
+        flex: 0 0 calc(50% - 40px);
+    }
+}

@@ -1,0 +1,106 @@
+﻿@model WebApplication2.ViewModel.datesViewModel
+@using WebApplication2.Models
+<html>
+
+<head>
+    <link href="~/Content/css/moviePage.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Info Page</title>
+</head>
+
+<body>
+   
+    <div class="content">
+        <div class="header">
+            @if (Uri.IsWellFormedUriString(@Model.movie.movie_image, UriKind.Absolute))
+            {
+                <img class="banner" src="@Model.movie.movie_image" width="700" height="700">
+            }
+            else
+            {
+                <img class="banner" src="@Url.Content("~/Content/css/images/" + @Model.movie.movie_image)" width="700" height="700">
+            }
+        </div>
+
+        <div>
+            <h2 style="color:whitesmoke">Select Date:</h2>
+
+            <form method="post" action="@Url.Action("SubmitBuy", "Home", new {MyMovie = @Model.movie.movieName})" style="display: inline; border-radius: 0.2em;">
+                <select name="slct" id="slct" class="select">
+                    <option selected disabled >Choose an option</option>
+                    @foreach (dates x in Model.movies_dates)
+                    {
+
+                        <option value="@x.movie_date @x.movie_time">date:@x.movie_date time:@x.movie_time hall:@x.hall</option>
+
+                    }
+                </select>
+                <button type="submit" style="color:white; background-color:#4d819f;" class="btn">Buy Tickets</button>
+            </form>
+
+        </div>
+
+        @if (Model.movie.prev_price < Model.movie.price)
+        {
+    <div>
+        <p style="font-size:20px;margin-left:-50px;color:whitesmoke;display:inline"> Sale Price: ₪@Model.movie.prev_price </p>
+
+        <p style="font-size: 20px; color: darkorange; text-decoration: line-through; display: inline">old price:₪@Model.movie.price</p>
+    </div>
+
+        }
+
+        <h2 style="color:whitesmoke">@Model.movie.movieName Description:</h2>
+
+        <p id="synopsis" style="color:whitesmoke"><br /><b>@Model.movie.movie_description</b> </p>
+
+
+        <p style="color:whitesmoke"><span>What did you think of @Model.movie.movieName?</span></p>
+        <input type="text" id="comment" value="Let us know!" class="zoz">
+        <input type="text" id="name" value="username" class="zoz1">
+        <button id="submit">submit</button>
+
+        <p id="thread" style="color:whitesmoke" class="zoz"></p>
+
+    </div>
+    
+    <script>
+        const title = document.querySelector('h1');
+        const input1 = document.getElementById('comment');
+        const input2 = document.getElementById('name');
+
+
+        input1.addEventListener("click", erase1);
+        input2.addEventListener("click", erase2);
+
+        function erase1() {
+            input1.value = "";
+        }
+        function erase2() {
+            input2.value = "";
+        }
+
+        function comment() { //only prints comments when two unique strings are entered
+            if (input1.value == "") {
+                input1.value = "Please enter a comment!";
+            }
+            if (input2.value == "") {
+                input2.value = "Please enter your name!";
+            }
+            if (input1.value != "Let us know!" && input2.value != "username" && input1.value != "Please enter a comment!" && input2.value != "Please enter your name!") {
+                var i = document.getElementById("comment").value;
+                var n = document.getElementById("name").value;
+                var t = new Date();
+                document.getElementById("thread").innerHTML += i + "<br>posted by " + n + "<br>" + t + "<br><br>";
+                input1.value = "Let us know!";
+                input2.value = "username";
+            }
+        }
+        document.getElementById("submit").onclick = function () { comment() };
+
+    </script>
+
+</body>
+
+</html>

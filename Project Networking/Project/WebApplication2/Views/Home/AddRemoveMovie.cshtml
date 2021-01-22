@@ -1,0 +1,98 @@
+﻿@model WebApplication2.ViewModel.movieViewModel
+@using WebApplication2.Models
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link href="~/Content/css/RemoveMovie.css" rel="stylesheet" />
+</head>
+
+<body>
+   
+    <div class="container">
+        <h2>Add/Remove Movies:</h2>
+        
+
+        <div id="new-movie-form">
+            <div id="status" class="error"> </div>
+
+            <form name="movieform" class="movie-form">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title">
+                </div>
+                <div class="form-group">
+                    <label for="img">Image:</label>
+                    <input type="text" class="form-control" id="img">
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input type="number" class="form-control" id="rating">
+                </div>
+
+                <input class="btn btn-sm btn-primary" type="submit" value="Save" id="save-new-movie" onClick=addMovie(movieform)>
+            </form>
+        </div>
+        <div id="table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Age</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="https://www.hopkinsmedicine.org/-/media/feature/noimageavailable.ashx" width="70" height="200" class="img-thumbnail" />
+                        </td>
+                        <td class="align-middle">New Name</td>
+                        <td class="align-middle">New price</td>
+                        <td class="align-middle">New Category</td>
+                        <td class="align-middle">New Age</td>
+                        <td class="align-middle">
+                            <a class="btn btn-sm btn-danger" style="background-color:#2E76CF; border: none;" href="@Url.Action("AddMovie","Home")">Add Movie</a>
+                        </td>
+                    </tr>
+                    @foreach (Movie m in Model.movies)
+                    {
+
+                        <tr>
+                            @if (!Uri.IsWellFormedUriString(m.movie_image, UriKind.Absolute))
+                            {
+                                <td>
+                                    <img src="@Url.Content("~/Content/css/images/" + @m.movie_image)" width="70" class="img-thumbnail" />
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <img src="@Url.Content(@m.movie_image)" width="70" class="img-thumbnail" />
+                                </td>
+                            }
+                            <td class="align-middle">@m.movieName</td>
+                            <td class="align-middle">@m.price</td>
+                            <td class="align-middle">@m.category </td>
+                            <td class="align-middle">@m.age</td>
+                            <td class="align-middle">
+                                <a class="btn btn-sm btn-danger" style=" border: none;" href="@Url.Action("RemoveMovieFromDB","Home",new { myMovie = @m.movieName})">Remove</a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <form id="myForm" method="post" action="@Url.Action("AdminDashboard","Home")">
+                <input type="submit" style="background-color: #4CAF50; border:none;" class="btn btn-sm btn-danger" value="Back Admin Dashboard">
+            </form>
+        </div>
+    </div>
+</body>
+</html>     
