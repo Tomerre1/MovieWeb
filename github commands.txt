@@ -1,0 +1,78 @@
+git push   ולעלות לגיט האב לדחוף למאסטר
+git branch -a לראות רשימה של כל הענפים
+git push origin brachName   וכהה מעדכנים ענף מוסיף ענף שאפשר לעבוד עליו וגם מוסיף אותו לאתר
+git add . להוסיף את הקבצים לפני קומיט
+git commit -m "Any comment" להעלות את זה לגיט 
+git checkout branchName מעבר בין ברנצים
+git log --oneline לראות את כל מה שעשינו במסודר
+git push origin --delete branchName מוחק את הענף מגיט האב
+git branch -d branchName מוחק את הענף מגיט
+git merge branchName עושה פעולת שיתוף בין ענפים כאשר הענף שעליו נמצאים מקבל מיזוג עם הענף יעד
+clear מנקה מסך
+mkdir פותח תיקייה
+touch פותח קובץ
+git reset --hard "commit id" מחיקה עד לקומיט מסויים הכל ולעבור אליו
+git checkout "commid id" חזרה לקומיט מסויים
+git rm -r --cached . למחיקת זיכרון של קבצים בשביל רשימת התעלמות 
+cd .. חוזר שלב אחד אחורה
+git init הופך את התיקייה לגיט לוקלי
+git revert "commit id"  מבלי למחוק היסטוריה עד אליו  לחזור לקומייט מסויים ולהפוך אותו לקומיט נוכחי
+
+
+My Path:
+/mnt/c/Users/tomer/Desktop/ProjectsGit
+
+
+
+Getting & Creating Projects
+Command	Description
+
+git init	Initialize a local Git repository
+git clone ssh://git@github.com/[username]/[repository-name].git	Create a local copy of a remote repository
+
+
+Command	Description
+
+git status	Check status
+git add [file-name.txt]	Add a file to the staging area
+git add -A	Add all new and changed files to the staging area
+git commit -m "[commit message]"	Commit changes
+git rm -r [file-name.txt]	Remove a file (or folder)
+
+Branching & Merging
+
+git branch	List branches (the asterisk denotes the current branch)
+git branch -a	List all branches (local and remote)
+git branch [branch name]	Create a new branch
+git branch -d [branch name]	Delete a branch
+git push origin --delete [branch name]	Delete a remote branch
+git checkout -b [branch name]	Create a new branch and switch to it
+git checkout -b [branch name] origin/[branch name]	Clone a remote branch and switch to it
+git branch -m [old branch name] [new branch name]	Rename a local branch
+git checkout [branch name]	Switch to a branch
+git checkout -	Switch to the branch last checked out
+git checkout -- [file-name.txt]	Discard changes to a file
+git merge [branch name]	Merge a branch into the active branch
+git merge [source branch] [target branch]	Merge a branch into a target branch
+git stash	Stash changes in a dirty working directory
+git stash clear	Remove all stashed entries
+
+
+
+Command	Description
+
+git push origin [branch name]	Push a branch to your remote repository
+git push -u origin [branch name]	Push changes to remote repository (and remember the branch)
+git push	Push changes to remote repository (remembered branch)
+git push origin --delete [branch name]	Delete a remote branch
+git pull	Update local repository to the newest commit
+git pull origin [branch name]	Pull changes from remote repository
+git remote add origin ssh://git@github.com/[username]/[repository-name].git	Add a remote repository
+git remote set-url origin ssh://git@github.com/[username]/[repository-name].git	Set a repository's origin branch to SSH
+
+Command	Description
+
+git log	View changes
+git log --summary	View changes (detailed)
+git log --oneline	View changes (briefly)
+git diff [source branch] [target branch]	Preview changes before merging
