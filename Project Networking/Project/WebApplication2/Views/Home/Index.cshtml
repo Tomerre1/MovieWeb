@@ -1,0 +1,241 @@
+﻿
+@using WebApplication2.Controllers
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MovieHunter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Content/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jquery-func.js"></script>
+</head>
+<body>
+    <!-- START PAGE SOURCE -->
+
+    <div id="shell">
+ 
+        <div id="header">
+            <h1 id="logo"><a href="~/Home/index">SceCinematics</a></h1><br />
+
+            <div id="navigation">
+                <br /><br />
+                <ul></ul><ul></ul>
+            </div>
+            @if (HomeController.user != null)
+            {
+                <h2 style="margin-bottom: -37px; font-size:14px; margin-top: 90px;">Hello, @HomeController.user.UserName</h2>
+            }
+            <div id="sub-navigation">
+                <ul>
+                    <li><h2 style="display:inline"><a href="~/Home/Login" id="loginform">Login</a> | <a href="~/Home/Signup">Register</a></h2></li>
+                    <li><a href="~/Home/MovieGallery">Movie Gallery</a></li>
+                    @if (HomeController.user != null)
+                    {
+                        <li><a href="~/Home/Cart">Cart</a></li>
+
+                    }
+
+
+                </ul>
+                <br />
+            </div>
+        </div>
+        <div id="main">
+            <div id="content">
+                <div class="box">
+                    <div class="head">
+                        <h2 style="font-size:15px">LATEST MOVIES</h2><br />
+                        <p class="text-right"><a href="@Url.Action("MovieGallery","Home")">See all</a></p>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "X-MAN"})"> <span class="play"><span class="name">X-MAN</span></span> <img src="~/Content/css/images/movie1.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>X-MAN</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "SpiderMan 2"})"> <span class="play"><span class="name">SPIDER MAN 2</span></span><img src="~/Content/css/images/movie2.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>SPIDER MAN 2</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName ="SpiderMan 3"})"> <span class="play"><span class="name">SPIDER MAN 3</span></span><img src="~/Content/css/images/movie3.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>SPIDER MAN 3</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"> <a href="@Url.Action("moviePage", "Home",new { movieName = "Valkyrie"})"><span class="play"><span class="name">VALKYRIE</span></span> <img src="~/Content/css/images/movie4.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>VALKYRIE</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "Gladiator"})"> <span class="play"><span class="name">GLADIATOR</span></span><img src="~/Content/css/images/movie5.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>GLADIATOR</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie last">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "The Ice Age"})"> <span class="play"><span class="name">ICE AGE</span></span><img src="~/Content/css/images/movie6.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>ICE AGE</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="cl">&nbsp;</div>
+                </div>
+                <div class="box">
+                    <div class="head">
+                        <h2>TOP RATED</h2><br />
+                        <p class="text-right"><a href="@Url.Action("MovieGallery","Home")">See all</a></p>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "TRANSFORMERS"})"> <span class="play"><span class="name">TRANSFORMERS</span></span><img src="~/Content/css/images/movie7.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>TRANSFORMERS</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "MAGNETO"})"> <span class="play"><span class="name">MAGNETO</span></span><img src="~/Content/css/images/movie8.jpg" alt="" /></a></div>
+                        <div class="rating">
+                            <p><h4>MAGNETO</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "KUNG FU PANDA"})"> <span class="play"><span class="name">KUNG FU PANDA</span></span><img src="~/Content/css/images/movie9.jpg" alt="" /></a></div>
+                        <div class="rating">
+                            <p><h4>KUNG FU PANDA</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "EAGLE EYE"})"> <span class="play"><span class="name">EAGLE EYE</span></span><img src="~/Content/css/images/movie10.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>EAGLE EYE</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "NARNIA"})"> <span class="play"><span class="name">NARNIA</span></span> <img src="~/Content/css/images/movie11.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>NARNIA</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie last">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "ANGELS & DEMONS"})"> <span class="play"><span class="name">ANGELS &amp; DEMONS</span></span> <img src="~/Content/css/images/movie12.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>ANGELS & DEMONS</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="cl">&nbsp;</div>
+                </div>
+                <div class="box">
+                    <div class="head">
+                        <h2>MOST COMMENTED</h2><br />
+                        <p class="text-right"><a href="@Url.Action("MovieGallery","Home")">See all</a></p>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "HOUSE"})"> <span class="play"><span class="name">HOUSE</span></span> <img src="~/Content/css/images/movie13.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>HOUSE</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "VACANCY"})"> <span class="play"><span class="name">VACANCY</span></span> <img src="~/Content/css/images/movie14.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>VACANCY</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "MIRRORS"})"> <span class="play"><span class="name">MIRRORS</span></span> <img src="~/Content/css/images/movie15.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>MIRRORS</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "THE KINGDOM"})"> <span class="play"><span class="name">THE KINGDOM</span></span> <img src="~/Content/css/images/movie16.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>THE KINGDOM</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "MOTIVES"})"> <span class="play"><span class="name">MOTIVES</span></span> <img src="~/Content/css/images/movie17.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>MOTIVES</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="movie last">
+                        <div class="movie-image"><a href="@Url.Action("moviePage", "Home",new { movieName = "THE PRESTIGE"})"> <span class="play"><span class="name">THE PRESTIGE</span></span> <img src="~/Content/css/images/movie18.jpg" alt="" /></a> </div>
+                        <div class="rating">
+                            <p><h4>THE PRESTIGE</h4></p>
+
+                        </div>
+                    </div>
+                    <div class="cl">&nbsp;</div>
+                </div>
+            </div>
+
+            <div id="footer">
+                <p style="color:whitesmoke"><span><h4 style="font-size: 20px;">What did you think of our website?</h4></span></p>
+                <input type="text" id="comment" value="Let us know!" class="zoz" />
+                <input type="text" id="name" value="username" class="zoz1" />
+                <button id="submit">submit</button>
+                <p id="thread" style="color:whitesmoke" class="zoz"></p>
+            </div>
+        </div>
+
+
+        <script>
+            const title = document.querySelector('h1');
+            const input1 = document.getElementById('comment');
+            const input2 = document.getElementById('name');
+
+
+            input1.addEventListener("click", erase1);
+            input2.addEventListener("click", erase2);
+
+            function erase1() {
+                input1.value = "";
+            }
+            function erase2() {
+                input2.value = "";
+            }
+
+            function comment() { //only prints comments when two unique strings are entered
+                if (input1.value == "") {
+                    input1.value = "Please enter a comment!";
+                }
+                if (input2.value == "") {
+                    input2.value = "Please enter your name!";
+                }
+                if (input1.value != "Let us know!" && input2.value != "username" && input1.value != "Please enter a comment!" && input2.value != "Please enter your name!") {
+                    var i = document.getElementById("comment").value;
+                    var n = document.getElementById("name").value;
+                    var t = new Date();
+                    document.getElementById("thread").innerHTML += i + "<br>posted by " + n + "<br>" + t + "<br><br>";
+                    input1.value = "Let us know!";
+                    input2.value = "username";
+                }
+            }
+            document.getElementById("submit").onclick = function () { comment() };
+        </script>
+    </div>
+</body>
+</html>

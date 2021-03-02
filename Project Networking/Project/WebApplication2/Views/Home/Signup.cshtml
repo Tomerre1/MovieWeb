@@ -1,0 +1,77 @@
+﻿@model WebApplication2.ViewModel.userViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+    <title>Register Forms </title>
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script src="~/Content/js/Signup.js"></script>
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="~/Content/css/Signup.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
+        <div class="card-body" style="margin-left: 650px;margin-top: 179px; ">
+            <h2 class="title">Registration Info</h2>
+            <form method="post" action="SubmitReg">
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="First Name" name="FirstName" value="@Model.user.FirstName" required>@Html.ValidationMessageFor(x => x.user.FirstName)
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="Last Name" name="LastName" value="@Model.user.LastName" required> @Html.ValidationMessageFor(x => x.user.LastName)
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="ID" name="userId" value="@Model.user.UserID" required> @Html.ValidationMessageFor(x => x.user.UserID)
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="UserName" name="userName" value="@Model.user.UserName" required> @Html.ValidationMessageFor(x => x.user.UserName)
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="password" placeholder="Password" name="UserPassword" value="@Model.user.UserPassword" required> @Html.ValidationMessageFor(x => x.user.UserPassword)
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="email" placeholder="Email" name="UserEmail" value="@Model.user.UserEmail" required>@Html.ValidationMessageFor(x => x.user.UserEmail)
+                </div>
+                <div class="input-group">
+                    <input class="input--style-3" type="text" placeholder="Phone" name="UserPhone" value="@Model.user.UserPhone" required>@Html.ValidationMessageFor(x => x.user.UserPhone)
+                </div>
+                <div class="p-t-10">
+                    <button class="btn btn--pill btn--green" type="submit">Send Details</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="wrapper wrapper--w780" style="visibility:hidden">
+
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="js/global.js"></script>
+
+</body>
+
+</html>
+

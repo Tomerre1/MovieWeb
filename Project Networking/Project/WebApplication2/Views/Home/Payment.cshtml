@@ -1,0 +1,71 @@
+﻿@using WebApplication2.Controllers
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Checkout Form</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="~/Content/css/payment.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="payment">
+            <div class="payment-logo">
+                <p>p</p>
+            </div>
+
+            <h2>Payment Gateway </h2>
+            <form method="post" action="@Url.Action("ViewPayment","Home")">
+                <div class="form">
+                    <div class="card space icon-relative">
+                        <label class="label">Card holder:</label>
+                        <input type="text" class="input" placeholder="Full Name" required name="FName" id="Fname">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="card space icon-relative">
+                        <label class="label">Card number:</label>
+                        <input type="text" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number" name="NoCard" id="NoCard" required>
+                        <i class="far fa-credit-card"></i>
+                    </div>
+                    <div class="card-grp space">
+                        <div class="card-item icon-relative">
+                            <label class="label">Expiry date:</label>
+                            <input type="text" name="expiry-data" class="input" data-mask="00 / 00" placeholder="00 / 00" name="expDate" id="expDate" required>
+                            <i class="far fa-calendar-alt"></i>
+                        </div>
+                        <div class="card-item icon-relative">
+                            <label class="label">CVC:</label>
+                            <input type="text" class="input" data-mask="000" placeholder="000" name="cvc" id="cvc" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+
+                    <button class="btn" type="submit">
+                        Pay Credit
+                    </button>
+
+
+            </form>
+            <br />
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="margin-left: 20%;">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="Tomer&Ilia@cinema.com">
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="item_name" value="Shopping cart">
+                <input type="hidden" name="amount" value="@HomeController.paypalPrice">
+                <input type="hidden" name="currency_code" value="ILS">
+                <input type="hidden" name="button_subtype" value="services">
+                <input type="hidden" name="no_note" value="0">
+                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</body>
+</html>

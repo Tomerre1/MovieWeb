@@ -1,0 +1,134 @@
+﻿@model WebApplication2.ViewModel.movieViewModel
+@using WebApplication2.Models
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Content/css/MovieGallery.css">
+    <script src="~/Content/js/jquery-2.2.3.min.js"></script>
+   
+    
+</head>
+
+
+<body>
+    <header>
+        <img style="margin-left:40%" src="~/Content/css/images/GreenGallery.png" />
+        <br /><br />
+        <div class="buttons">
+            <ul>
+                <li>
+                <li><h4 style="display:inline">Order by:</h4></li>
+                <li><a href="@Url.Action("MovieGallery", "Home", new {sort_Type = "price_decrease"  })" class="btn">Price Decrease</a></li>
+                <li><a href="@Url.Action("MovieGallery", "Home", new {sort_Type = "price_increase"  })" class="btn">Price Increase</a></li>
+                <li><a href="@Url.Action("MovieGallery", "Home", new {sort_Type = "age"  })" class="btn">age 18+</a></li>
+                <li><a href="@Url.Action("MovieGallery", "Home", new {sort_Type = "most_popular"  })" class="btn">Most Popular</a></li>
+                <li><a href="@Url.Action("MovieGallery", "Home", new {sort_Type = "Sales"  })" class="btn">Show Sales</a></li>
+
+                <br />
+                <br />
+                <br />
+
+                <li>
+                    <form method="post" action="@Url.Action("MovieGallery", "Home",new { sort_Type ="category"})" style="display:inline">
+                        <label for="date-select" name="date-select"> <h4>Sort Category by:</h4> </label>
+                        <select id="select" name="selectName" class="select">
+                            <option value="">--Please choose an category--</option>
+                            <option value="Action">Action</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Cartoon">Cartoon</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                        </select>
+                        <button type="submit" class="btn">Select Category</button>
+
+
+                    </form>
+
+                </li>
+
+
+
+                <li>
+                    <form method="post" style="display:inline" action="@Url.Action("MovieGallery", "Home", new {sort_Type = "filter_price"})">
+                        <label for="range-1a"><h4> &nbsp;&nbsp; Price Range: &nbsp;&nbsp;</h4></label>
+                        <input type="range" style="display:inline" name="range-1a" id="range-1a" min="1" max="100" value="1" data-popup-enabled="true" data-show-value="true">
+                        <output for="range" class="output" style="display:inline"></output>
+                        <button type="submit" class="btn">Select Price Range</button>
+
+                    </form>
+                </li>
+                <li>
+                    <br />
+                    <br />
+                    <form style="display:inline" method="post" action="@Url.Action("MovieGallery", "Home", new {sort_Type = "date"})">
+                        <label for="MovieDate"><h4> Select a date: </h4></label>
+                        <input type="date" id="MovieDate" name="MovieDate" style="color:white; display:inline;background:#2c3e50; ">
+                        <button type="submit" class="btn" style="display:inline">Submit Date</button>
+                    </form>
+                </li>
+                <li>
+                    <form style="display:inline;" method="post" action="@Url.Action("MovieGallery", "Home", new {sort_Type = "hour"})">
+                        <label for="MovieDate"><h4> Select a hour: </h4></label>
+                        <input type="time" id="hour" name="hour" style="color:white;background:#2c3e50; display:inline">
+                        <button type="submit" class="btn" style="display:inline">Submit Hour</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+
+        @foreach (Movie obj in Model.movies)
+        {
+            if (Uri.IsWellFormedUriString(obj.movie_image, UriKind.Absolute))
+            {
+        <div class="movie-item">
+            <a href="@Url.Action("moviePage", "Home",new { movieName =@obj.movieName })"><img src=@obj.movie_image id=@obj.movieName name="@obj.movieName" width="500" height="400"></a>
+            <p>@obj.movieName</p>
+            @if (obj.price > obj.prev_price)
+            {
+                <p>Sale price:@obj.prev_price</p>
+                <p style="text-decoration: line-through;">price:@obj.price</p>
+            }
+            else
+            {
+                <p>price:@obj.price</p>
+            }
+
+
+
+        </div>
+            }
+            else
+            {
+                <div class="movie-item">
+                    <a href="@Url.Action("moviePage", "Home",new { movieName =@obj.movieName })"><img src="@Url.Content("~/Content/css/images/" + @obj.movie_image)" style="width:225px ; " id=@obj.movieName name="@obj.movieName" width="500" height="400"></a>
+                    <p>@obj.movieName</p>
+            @if (obj.price > obj.prev_price)
+            {
+                <p>Sale price:@obj.prev_price</p>
+                <p style="text-decoration: line-through;">price:@obj.price</p>
+            }
+            else
+            {
+                <p>price:@obj.price</p>
+            }
+                </div>
+            }
+
+        }
+    </div>
+    <script>
+        $('#range-1a').on("input", function () {
+            $('.output').val(this.value + "₪");
+        }).trigger("change");
+    </script>
+</body>
+</html>
+

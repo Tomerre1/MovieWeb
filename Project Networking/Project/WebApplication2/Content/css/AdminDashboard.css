@@ -1,0 +1,237 @@
+﻿body {
+    background-image: url('https://wallpaperaccess.com/full/1597786.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5rem !important;
+    display: inline-block;
+    height: 1em !important;
+    line-height: 1 !important;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
+
+.Back-To-Learn-View {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.Manager-Categories {
+    -o-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+i.Back-To-Learn-View:before {
+    /*exit to app*/
+    content: "\E879";
+}
+
+i.Manager-Start:before {
+    /*home*/
+    content: "\E88A";
+}
+
+i.Organisation-Icon:before {
+    /*device_hub*/
+    content: "\E335";
+}
+
+i.Manager-Translate:before {
+    /*language*/
+    content: "\E894";
+}
+
+i.Manager-Categories:before {
+    /*style*/
+    content: "\E41D";
+}
+
+i.MyMenu-Profile:before {
+    /*person*/
+    content: "\E7FD";
+}
+
+i.MyMenu-Notifications:before {
+    /*Notifications*/
+    content: "\E7F4";
+}
+
+i.MyMenu-Logout:before {
+    /*Power settings new*/
+    content: "\E8AC";
+}
+
+.Manager-Menu-Title {
+    font-size: 1rem;
+}
+
+.Navigation-Icon-Behave i {
+    font-size: 2.4rem !important;
+    vertical-align: middle;
+}
+
+.navbar-inverse {
+    background-color: #007AC2;
+    border-width: 0px;
+    visibility:hidden;
+}
+
+.navbar-inverse .navbar-collapse {
+    border-color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #bedbf0;
+    color: #007ac2;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:focus,
+.navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: #bedbf0;
+    color: #007ac2;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #007ac2;
+}
+
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+    background-color: #bedbf0;
+}
+
+.Menu-Togle-Icon {
+    font-size: 2.4rem !important;
+    vertical-align: middle;
+    color: #fff;
+}
+
+.navbar-inverse .navbar-toggle:focus .Menu-Togle-Icon,
+.navbar-inverse .navbar-toggle:hover .Menu-Togle-Icon {
+    color: #007ac2;
+}
+
+i.Menu-Togle-Icon:before {
+    /*menu*/
+    content: "\E5D2";
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+    font-size: 1rem;
+    padding-left: 35px;
+}
+
+.dropdown-header {
+    color: #bedbf0;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus,
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+    background-color: #bedbf0;
+    color: #007ac2;
+}
+
+.Admin-Card-Cover {
+    text-decoration: none !important;
+}
+
+    .Admin-Card-Cover > img.thumbnail {
+        margin-bottom: 0px;
+        border-radius: initial;
+        border-width: 2px;
+    }
+
+        .Admin-Card-Cover > img.thumbnail:focus,
+        .Admin-Card-Cover > img.thumbnail:hover,
+        .Admin-Card-Cover > img.thumbnail:active {
+            border: 2px solid #007AC2;
+        }
+
+.Admin-Card-Overlay {
+    background-color: rgba(89, 89, 89, 0.5);
+    color: #fff;
+    display: block;
+    position: relative;
+    top: -26px;
+    text-align: center;
+    margin-left: 6px;
+    margin-right: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+    background-color: #bedbf0;
+}
+
+
+/*bootstrap preset breaking point, not alterable*/
+
+@media (min-width: 768px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
+        background-color: #fff;
+    }
+
+    .navbar-nav > li > a {
+        padding-bottom: 5px;
+        padding-top: 6px;
+    }
+
+    .Navigation-Icon-Behave {
+        text-align: center;
+    }
+
+        .Navigation-Icon-Behave i {
+            display: block;
+        }
+
+    .dropdown-menu {
+        background-color: #bedbf0;
+    }
+
+    .dropdown-header {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        color: #007ac2;
+        padding-left: 20px;
+    }
+
+        .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus,
+        .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+            background-color: #dbecf7;
+            color: #007ac2;
+        }
+}
+
+.container .body-content {
+    background-image: url('~/Content/css/images/1597786.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
