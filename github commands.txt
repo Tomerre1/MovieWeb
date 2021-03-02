@@ -76,3 +76,35 @@ git log	View changes
 git log --summary	View changes (detailed)
 git log --oneline	View changes (briefly)
 git diff [source branch] [target branch]	Preview changes before merging
+
+
+for me:
+אני רוצה לעשות איניט לתיקייה:
+git init
+
+לעשות קישור בין תיקייה לבין אתר:
+git remote add  origin https://github.com/Tomerre1/TomerRevahRepo.git
+
+לבדוק מצב תיקייה:
+git status
+
+הוספה של קובץ מתיקייה לאתר:
+git add .
+git commit -m "any comment"
+git push origin master
+
+אני רוצה למחוק קובץ:
+git rm "test git.txt"
+git commit -m "any comment"
+git push origin master
+
+משיכת נתונים:
+git pull origin master || git pull origin master --allow-unrelated-histories
+git commit -m "any comment" - לא תמיד צריך
+
+
+בדיקת היסטוריה של העלאות:
+git log
+
+פקודות נוספות:
+git merge origin origin/master - איחוד בין ברנץ של המחשב לזה של האתר
