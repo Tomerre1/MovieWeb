@@ -1,3 +1,5 @@
+Git Commands:
+
 git push   ולעלות לגיט האב לדחוף למאסטר
 git branch -a לראות רשימה של כל הענפים
 git push origin brachName   וכהה מעדכנים ענף מוסיף ענף שאפשר לעבוד עליו וגם מוסיף אותו לאתר
