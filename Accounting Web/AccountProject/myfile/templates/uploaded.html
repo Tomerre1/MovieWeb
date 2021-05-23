@@ -1,0 +1,84 @@
+{% load static %} 
+<html>
+<title>Client Page</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{% static 'menu.css' %}"> 
+<link rel="stylesheet" href="{% static 'showPdf.css' %}"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+{% block body %}
+<body class="w3-light-grey">
+
+<!-- Top container -->
+
+  <a class="w3-bar-item w3-right" href={% url 'login:homePage' %} style="font-size:31px;color:#ffffff;"> <i class="fa fa-sign-out"></i>  </a>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;margin-top:-44px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s8 w3-bar">
+      
+      <span >Welcome, <strong>{{user.firstName}}</strong></span>
+      <a href={% url 'myprofile:myprofile' %} ><i class="fa fa-user"></i></a>
+      
+
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href={% url 'myfile:home' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-home"></i>  Home </a>
+    <a href={% url 'myprofile:myprofile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card"></i>  My profile</a>
+    <a href={% url 'myfile:uploadfile' %} class="w3-bar-item w3-button w3-padding "><i class="fa fa-upload"></i> Upload invoice</a>
+    <a href={% url 'myfile:uploadedfile' %} class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-cloud"></i>  Uploaded invoices</a>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<!-- CONTENT GOES HERE -->
+
+<div class="container" style="top: auto; right: -20%;display: grid; grid-template-columns: repeat(4, 0.2fr);">
+
+
+{% for f in files %}
+<div >
+<div class="bodyPdf">
+    <div class="cardPdf app-file-list">
+  <div class="app-file-icon">
+    <i class="fas fa-file-pdf" style="color: red; font-size: 60px"></i>
+  </div>
+  <div class="description">
+    <div>
+      <div>{{f.name}}.pdf</div>
+      <div>{{f.date}}</div>
+    </div>
+
+  </div>
+</div>
+</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+  <!-- End page content -->
+</div>
+</body>
+{% endblock body %}
+</html>

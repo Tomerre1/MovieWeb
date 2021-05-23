@@ -1,0 +1,200 @@
+{% load static %} 
+<html>
+<title>Client Page</title>
+<meta charset="UTF-8">
+<!--TEST-->
+
+<!--TEST-->
+<link rel="stylesheet" href="{% static 'myprofile.css' %}">
+<link rel="stylesheet" href="{% static 'menu.css' %}"> 
+<link rel="stylesheet" href="{% static 'myprofile.css' %}"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+{% block body %}
+<body class="w3-light-grey">
+
+<!-- Top container -->
+
+  <a class="w3-bar-item w3-right" href={% url 'login:homePage' %} style="font-size:31px;color:#ffffff;"> <i class="fa fa-sign-out"></i>  </a>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;margin-top:-44px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s8 w3-bar">
+      
+      <span >Welcome, <strong>{{user.firstName}}</strong></span>
+      <a href={% url 'myprofile:myprofile' %} ><i class="fa fa-user"></i></a>
+      
+
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href={% url 'myfile:home' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-home"></i>  Home </a>
+    <a href={% url 'myprofile:myprofile' %} class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-id-card"></i>  My profile</a>
+    <a href={% url 'myfile:uploadfile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-cloud-upload"></i>  Upload invoice</a>
+    <a href={% url 'myfile:uploadedfile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-cloud"></i>  Uploaded invoices</a>
+    
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<!-- CONTENT GOES HERE -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="container emp-profile" style="width: 41% ;left: 38%; top: 15%;">
+                <div class="row">
+                                    <div class="row">
+                <i class="fa fa-user-circle" style="font-size: 110px;display: flex;justify-content: center;color: #4286f4;"></i>
+                </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        <strong>Edit Profile</strong>
+                                    </h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form method="post" action="{% url 'myprofile:editprofilesubmit' %}"> 
+                            {% csrf_token %}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.userName }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>first name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label id="icon" for="firstName" style="display: inline-block;padding: 9.3px 15px;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #1c87c9;color: #fff;text-align: center;margin: 0;border-radius: 5px 0 0 5px;"><i class="fa fa-user"></i></label>
+                                                <input type="text" name="firstName" id="name" value="{{user.firstName}}" required="" style="width: calc(100% - 57px);height: 36px;margin: 0px 0 0 -6px;padding-left: 10px;border-radius: 0 5px 5px 0;border: solid 1px #cbc9c9;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #fff;" required/>
+                                            </div>
+                                        </div>
+                                                                       <div class="row">
+                                            <div class="col-md-6">
+                                                <label>last name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label id="icon" for="firstName" style="display: inline-block;padding: 9.3px 15px;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #1c87c9;color: #fff;text-align: center;margin: 0;border-radius: 5px 0 0 5px;"><i class=" 	fa fa-user-o"></i></label>
+                                                <input type="text" name="lastName" id="lastName" value="{{user.lastName}}" required="" style="width: calc(100% - 57px);height: 36px;margin: 0px 0 0 -6px;padding-left: 10px;border-radius: 0 5px 5px 0;border: solid 1px #cbc9c9;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #fff;" required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label id="icon" for="firstName" style="display: inline-block;padding: 9.3px 15px;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #1c87c9;color: #fff;text-align: center;margin: 0;border-radius: 5px 0 0 5px;"><i class="fa fa-envelope"></i></label>
+                                                <input type="text" name="Email" id="Email" value="{{user.email}}" required="" style="width: calc(100% - 57px);height: 36px;margin: 0px 0 0 -6px;padding-left: 10px;border-radius: 0 5px 5px 0;border: solid 1px #cbc9c9;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #fff;" required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>password</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label id="icon" for="firstName" style="display: inline-block;padding: 9.3px 18px;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #1c87c9;color: #fff;text-align: center;margin: 0;border-radius: 5px 0 0 5px;"><i class="fa fa-unlock-alt"></i></label>
+                                                <input type="password" name="password" id="password" value="{{user.password}}" required="" style="width: calc(100% - 57px);height: 36px;margin: 0px 0 0 -6px;padding-left: 10px;border-radius: 0 5px 5px 0;border: solid 1px #cbc9c9;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #fff;" required/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label id="icon" for="phone" style="display: inline-block;padding: 9.3px 18px;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #1c87c9;color: #fff;text-align: center;margin: 0;border-radius: 5px 0 0 5px;"><i class="fa fa-phone"></i></label>
+                                                <input type="text" name="phoneNumber" id="phoneNumber" value="{{user.phoneNumber}}" required="" style="width: calc(100% - 57px);height: 36px;margin: 0px 0 0 -6px;padding-left: 10px;border-radius: 0 5px 5px 0;border: solid 1px #cbc9c9;box-shadow: 1px 2px 5px rgba(0,0,0,.09);background: #fff;" required/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <button type="submit" style="width: 100%;padding: 10px 0;margin: 10px auto;border-radius: 5px;border: none;background: #1c87c9;font-size: 14px;font-weight: 600;color: #fff;">Submit</button>      
+                                        </div>
+                            </form>  
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+         
+        </div>
+</div>
+
+{% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}<script>alert("{{ message }}")</script>
+            {% endif %}
+        {% endfor %}
+{% endif %}
+
+
+<script>
+let number = 1;
+  myFunction = () =>{
+      let nme = document.getElementById("myFile").files;
+      if(document.getElementById("myFile").files.length > 0) {
+        for(let i = 0, size = nme.length; i < size ; i++){
+          let item = nme[i];
+          d1 = document.getElementById("drag-text");
+          d1.insertAdjacentHTML('beforeend', "<h1>" + (number) + ") " +  item.name + "</h1>");
+          number++;
+      }
+    }
+  }  
+</script>
+
+  <!-- End page content -->
+</div>
+
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+</script>
+
+</body>
+{% endblock body %}
+</html>

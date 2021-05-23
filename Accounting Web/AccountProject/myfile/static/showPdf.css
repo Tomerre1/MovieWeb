@@ -1,0 +1,70 @@
+
+
+.bodyPdf {
+ 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+  }
+  .cardPdf {
+    margin-bottom: 1.875rem;
+    width: 250px;
+    position: relative;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .app-file-list {
+    border: 1px solid #ebebeb;
+  }
+  
+  .app-file-list .app-file-icon {
+    background-color: #F5F5F5;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    border-bottom: 1px solid #ebebeb;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+  
+  .app-file-list:hover {
+    border-color: #d7d7d7;
+  }
+  
+  .description {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .fa-download {
+    color: #333333;
+    cursor: pointer;
+    transition: 0.3s
+  }
+  
+  .fa-download:hover {
+    color: #2ec1ac;
+  }
+  
+  .fa-download:active {
+    color: #28df99;
+  }
+  
+  .credits {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  .credits a {
+    color: #222222;
+    text-decoration: none;
+    font-weight: 800;
+  }

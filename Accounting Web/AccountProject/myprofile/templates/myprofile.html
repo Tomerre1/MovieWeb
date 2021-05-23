@@ -1,0 +1,183 @@
+{% load static %} 
+<html>
+<title>Client Page</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{% static 'myprofile.css' %}">
+<link rel="stylesheet" href="{% static 'menu.css' %}"> 
+<link rel="stylesheet" href="{% static 'myprofile.css' %}"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+{% block body %}
+<body class="w3-light-grey">
+
+<!-- Top container -->
+
+  <a class="w3-bar-item w3-right" href={% url 'login:homePage' %} style="font-size:31px;color:#ffffff;"> <i class="fa fa-sign-out"></i>  </a>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;margin-top:-44px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s8 w3-bar">
+      
+      <span >Welcome, <strong>{{user.firstName}}</strong></span>
+      <a href={% url 'myprofile:myprofile' %} ><i class="fa fa-user"></i></a>
+      
+
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href={% url 'myfile:home' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-home"></i>  Home </a>
+    <a href={% url 'myprofile:myprofile' %} class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-id-card"></i>  My profile</a>
+    <a href={% url 'myfile:uploadfile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-cloud-upload"></i>  Upload invoice</a>
+    <a href={% url 'myfile:uploadedfile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-cloud"></i>  Uploaded invoices</a>
+    
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<!-- CONTENT GOES HERE -->
+
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<div class="container emp-profile" style="width: 30% ;left: 44%; top: 15%;">
+            <form method="post">
+                <div class="row">
+                {% comment %} <img src="https://icon-library.com/images/generic-profile-icon/generic-profile-icon-10.jpg" style="left: 144px;position: relative;" width="200" height="200"> {% endcomment %}
+                <i class="fa fa-user-circle" style="font-size: 110px;display: flex;justify-content: center;color: #4286f4;"></i>
+                    {% comment %} <div class="col-md-6">
+                        <div class="profile-head">
+                                    <h5>
+                                        <strong>{{ user.firstName}} {{ user.lastName }}</strong>
+                                    </h5>
+                        </div>
+                    </div> {% endcomment %}
+                    <div style="right: 6%;position: absolute;top: 63;">
+                        {% comment %} <input href={% url 'myprofile:editprofile' %} type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/> {% endcomment %}
+                        <a href={% url 'myprofile:editprofile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit" style='font-size:24px'></i></a>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Full name</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.firstName}} {{ user.lastName }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Username</label> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.userName }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.email }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Phone</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{ user.phoneNumber }}</p>
+                                            </div>
+                                        </div>
+                                        
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </form>           
+        </div>
+</div>
+
+{% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}<script>alert("{{ message }}")</script>
+            {% endif %}
+        {% endfor %}
+{% endif %}
+
+
+<script>
+let number = 1;
+  myFunction = () =>{
+      let nme = document.getElementById("myFile").files;
+      if(document.getElementById("myFile").files.length > 0) {
+        for(let i = 0, size = nme.length; i < size ; i++){
+          let item = nme[i];
+          d1 = document.getElementById("drag-text");
+          d1.insertAdjacentHTML('beforeend', "<h1>" + (number) + ") " +  item.name + "</h1>");
+          number++;
+      }
+    }
+  }  
+</script>
+
+  <!-- End page content -->
+</div>
+
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+//Uploading file
+$(document).ready(function(){
+  $('form input').change(function () {
+    $('form p').text(this.files.length + " file(s) selected");
+  });
+});
+
+
+</script>
+
+</body>
+{% endblock body %}
+</html>

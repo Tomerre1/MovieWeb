@@ -1,0 +1,149 @@
+{% load static %} 
+<html>
+<title>Client Page</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="{% static 'uploadFile.css' %}"> 
+<link rel="stylesheet" href="{% static 'menu.css' %}"> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+
+{% block body %}
+<body class="w3-light-grey">
+
+<!-- Top container -->
+
+  <a class="w3-bar-item w3-right" href={% url 'login:homePage' %} style="font-size:31px;color:#ffffff;"> <i class="fa fa-sign-out"></i>  </a>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;margin-top:-44px;" id="mySidebar"><br>
+  <div class="w3-container w3-row">
+    <div class="w3-col s8 w3-bar">
+      
+      <span >Welcome, <strong>{{user.firstName}}</strong></span>
+      <a href={% url 'myprofile:myprofile' %} ><i class="fa fa-user"></i></a>
+      
+
+    </div>
+  </div>
+  <hr>
+  <div class="w3-container">
+    <h5>Dashboard</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href={% url 'myfile:home' %} class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-home"></i>  Home </a>
+    <a href={% url 'myprofile:myprofile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-id-card"></i>  My profile</a>
+    <a href={% url 'myfile:uploadfile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-cloud-upload"></i>  Upload invoice</a>
+    <a href={% url 'myfile:uploadedfile' %} class="w3-bar-item w3-button w3-padding"><i class="fa fa-cloud"></i>  Uploaded invoices</a>
+    
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<!-- CONTENT GOES HERE -->
+
+<div class="container">
+  <div class="aligner">
+    <div class="card" style="margin-left: -290px;">
+
+      <h4>FILE UPLOADER</h4>
+      <div class="drop-area">
+        <div class="file-upload">
+          <div class="image-upload-wrap">
+          <form action="{% url 'myfile:addFileButton' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <input id="myFile" class="file-upload-input" type='file' accept="" onchange="myFunction()" name="fileInput" multiple required/>
+            <div class="drag-text" id="drag-text">
+            {% if messages %}
+              {% for message in messages %}
+                {% if message.tags %}<h2>{{ message }}</h2>
+                {% endif %}
+              {% endfor %}
+                
+            {% else %}
+              <h2 id="nameChange">Drag and drop a file</h2>
+            {% endif %}
+            </div>
+          </div>
+          <br><br>
+            <button class="file-upload-btn" onclick="submitFunc()" type="submit">Add Files</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="file-list">
+        <div class="file-upload-content">
+          
+          <div class="uploaded-file"></div>
+          
+          <div class="image-title-wrap">
+            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<script>
+  myFunction = () =>{
+      let nme = document.getElementById("myFile").files;
+      if(document.getElementById("myFile").files.length > 0) {
+        for(let i = 0, size = nme.length; i < size ; i++){
+          let item = nme[i];
+          let d1 = document.getElementById("drag-text");
+          d1.insertAdjacentHTML('beforeend', "<h4><b>" +  item.name + "<b></h4>");
+      }
+    }
+  }  
+  submitFunc = () =>{
+    let d1 = document.getElementById("nameChange");
+    d1.innerText = "Succesfuly" 
+  }
+</script>
+
+  <!-- End page content -->
+</div>
+
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+
+</script>
+
+</body>
+{% endblock body %}
+</html>
