@@ -57,7 +57,7 @@ pipeline {
                                 dir("Agile_inv") {
                                     sh 'pip install pylint'
                                     sh 'pip install pylint-django'
-                                    sh 'python -m pylint sprint project userStory msgAdmin login'
+                                    sh 'python -m  pylint  --fail-under=8  Agile_inv sprint userStory login project msgAdmin'
                                 }
                             
                 }
